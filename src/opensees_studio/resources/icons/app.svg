@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="OpenSees Studio">
+  <title>OpenSees Studio — app icon</title>
+  <desc>A portal frame under a load, with its displaced shape and amber supports.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#223048"/>
+      <stop offset="55%" stop-color="#131C2A"/>
+      <stop offset="100%" stop-color="#0A0F17"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#CFE4FF"/>
+      <stop offset="45%" stop-color="#8DBCF4"/>
+      <stop offset="100%" stop-color="#3F7FCF"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD166"/>
+      <stop offset="100%" stop-color="#E08A1E"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="32%" cy="18%" r="85%">
+      <stop offset="0%" stop-color="#4C6D9E" stop-opacity="0.55"/>
+      <stop offset="60%" stop-color="#223048" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Rounded app tile -->
+  <rect x="36" y="36" width="952" height="952" rx="214" fill="url(#bg)"/>
+  <rect x="36" y="36" width="952" height="952" rx="214" fill="url(#glow)"/>
+  <rect x="37.5" y="37.5" width="949" height="949" rx="212.5" fill="none"
+        stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="3"/>
+
+  <!-- Faint modelling grid -->
+  <g stroke="#FFFFFF" stroke-opacity="0.045" stroke-width="2">
+    <path d="M 272 170 V 850 M 512 170 V 850 M 752 170 V 850"/>
+    <path d="M 170 300 H 854 M 170 540 H 854 M 170 780 H 854"/>
+  </g>
+
+  <!-- Displaced shape: a quiet ghost behind the frame -->
+  <path d="M 300 760 C 322 530 344 372 512 356 C 680 340 702 530 724 760"
+        fill="none" stroke="#7BB1F0" stroke-opacity="0.30" stroke-width="26"
+        stroke-dasharray="10 26" stroke-linecap="round"/>
+
+  <!-- Portal frame -->
+  <path d="M 300 760 V 380 H 724 V 760"
+        fill="none" stroke="url(#steel)" stroke-width="68"
+        stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Joints -->
+  <circle cx="300" cy="380" r="17" fill="#EAF1FA"/>
+  <circle cx="724" cy="380" r="17" fill="#EAF1FA"/>
+
+  <!-- Amber supports -->
+  <rect x="236" y="748" width="128" height="58" rx="14" fill="url(#gold)"/>
+  <rect x="660" y="748" width="128" height="58" rx="14" fill="url(#gold)"/>
+
+  <!-- Load arrow -->
+  <rect x="492" y="178" width="40" height="96" rx="12" fill="url(#gold)"/>
+  <path d="M 452 264 H 572 L 512 334 Z" fill="url(#gold)"/>
+</svg>

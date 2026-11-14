@@ -7,6 +7,14 @@ that this is pre-alpha: minor and patch releases may change the `.osmodel`
 schema (it carries a `schema_version`, and a file from a newer build is now
 refused instead of silently downgraded).
 
+## [Unreleased]
+
+### Added
+
+- **Application icon.** A square portal-frame mark with the load arrow, amber
+  supports and displaced-shape ghost. It is set as the Qt window icon and ships
+  as SVG plus native `.ico` / `.icns` for the Windows and macOS bundles.
+
 ## [0.0.64] - 2026-11-14
 
 ### Added

@@ -6,11 +6,21 @@ exec the loop. No business logic here.
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 from PySide6.QtCore import QLocale, Qt
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QApplication
 
 from opensees_studio.platform_env import prefer_xwayland_on_wayland
 from opensees_studio.views.main_window import MainWindow
+
+
+def app_icon_path() -> Path:
+    """The square app icon, in the source tree or inside a frozen bundle."""
+    root = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
+    return root / "resources" / "icons" / "app.svg"
 
 
 def _configure_qt() -> None:
@@ -45,6 +55,10 @@ def run(argv: list[str]) -> int:
     app = QApplication(argv)
     app.setApplicationName("OpenSees Studio")
     app.setOrganizationName("OpenSees Studio")
+    app.setDesktopFileName("opensees-studio")
+    icon = app_icon_path()
+    if icon.is_file():
+        app.setWindowIcon(QIcon(str(icon)))
 
     # The heartbeat only records when the opt-in monitor is enabled, but it has
     # to exist before a long action starts so that action's stall is visible.

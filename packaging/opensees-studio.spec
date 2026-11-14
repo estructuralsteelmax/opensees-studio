@@ -41,6 +41,7 @@ ROOT = SPEC_DIR.parent
 SRC = ROOT / "src"
 
 APP_NAME = "OpenSeesStudio"
+ICON_DIR = SRC / "opensees_studio" / "resources" / "icons"
 
 datas = []
 binaries = []
@@ -68,6 +69,9 @@ datas += [
 ]
 # The interface translations (Options → Language).
 datas += [(str(SRC / "opensees_studio" / "data" / "i18n" / "es.json"), "opensees_studio/data/i18n")]
+# The window icon; the .ico/.icns twins are used by the executable below on
+# Windows and macOS, the SVG by QApplication.setWindowIcon on every platform.
+datas += [(str(ICON_DIR), "opensees_studio/resources/icons")]
 
 # PyVista is built with mypyc: `pyvista.typing.mypy_plugin` — imported at
 # runtime by `pyvista/core/dataobject.py`, not only by the type checker —
@@ -157,6 +161,15 @@ a = Analysis(  # noqa: F821 - provided by PyInstaller
 
 pyz = PYZ(a.pure)  # noqa: F821
 
+# PyInstaller only embeds a native icon in the Windows/macOS executable; the
+# Linux bundle gets it from QApplication.setWindowIcon and a .desktop entry.
+if sys.platform == "win32":
+    executable_icon = str(ICON_DIR / "app.ico")
+elif sys.platform == "darwin":
+    executable_icon = str(ICON_DIR / "app.icns")
+else:
+    executable_icon = None
+
 exe = EXE(  # noqa: F821
     pyz,
     a.scripts,
@@ -173,8 +186,7 @@ exe = EXE(  # noqa: F821
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    # The roadmap still owes a native .ico/.icns; add it here when it lands.
-    icon=None,
+    icon=executable_icon,
 )
 
 coll = COLLECT(  # noqa: F821
